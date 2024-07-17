@@ -8,11 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
 </head>
 <body>
     <!-- navbar -->
-    <?php require_once 'navbar.php'; ?>
+    <?php require_once '../component/navbar.php'; ?>
     <!-- akhir navbar -->
 
     <!-- konten -->
@@ -39,11 +39,11 @@
                                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Data Buku</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <form action="db/buku/tambah_data.php" method="post">
+                                            <form action="../../db/buku/insert.php" method="post">
                                                 <div class="modal-body">
                                                     <div class="mb-3">
                                                         <label for="kode" class="form-label">Kode</label>
-                                                        <input type="text" class="form-control" id="kode" name="kode" placeholder="masukkan kode buku" required>
+                                                        <input type="number" class="form-control" id="kode" name="kode" placeholder="masukkan kode buku" required>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="nama" class="form-label">Nama Buku</label>
@@ -55,7 +55,7 @@
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="tahun_terbit" class="form-label">Tahun Terbit</label>
-                                                        <input type="text" class="form-control" id="tahun_terbit" name="tahun_terbit" placeholder="cth. 2010" required>
+                                                        <input type="number" min="1900" max="<?= date('Y') ?>" class="form-control" id="tahun_terbit" name="tahun_terbit" placeholder="cth. 2010" required>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
@@ -82,7 +82,7 @@
                             </thead>
                             <tbody>
                                 <?php
-                                require_once 'db/koneksi.php';
+                                require_once '../../db/koneksi.php';
                                 $query = 'SELECT * FROM buku';
                                 $data_buku = mysqli_query($koneksi, $query);
                                 foreach ($data_buku as $key => $buku) :
@@ -103,7 +103,7 @@
                                     </td>
                                     <td>
                                         <!-- detail -->
-                                        <a href="detail_buku.php?kode=<?= $buku['kode'] ?>" class="me-2" title="detail">
+                                        <a href="detail.php?kode=<?= $buku['kode'] ?>" class="me-2" title="detail">
                                             <i class="fa-solid fa-circle-info fa-lg"></i>
                                         </a>
                                         <!-- edit -->
@@ -117,12 +117,12 @@
                                                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Data Buku</h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
-                                                    <form action="db/buku/edit_data.php" method="post">
+                                                    <form action="../../db/buku/update.php" method="post">
                                                         <input type="hidden" name="id" value="<?= $buku['id'] ?>">
                                                         <div class="modal-body">
                                                             <div class="mb-3">
                                                                 <label for="kode" class="form-label">Kode</label>
-                                                                <input type="text" class="form-control" id="kode" name="kode" value="<?= $buku['kode'] ?>" placeholder="masukkan kode buku" required>
+                                                                <input type="number" class="form-control" id="kode" name="kode" value="<?= $buku['kode'] ?>" placeholder="masukkan kode buku" required>
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="nama" class="form-label">Nama Buku</label>
@@ -134,7 +134,7 @@
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="tahun_terbit" class="form-label">Tahun Terbit</label>
-                                                                <input type="text" class="form-control" id="tahun_terbit" name="tahun_terbit" value="<?= $buku['tahun_terbit'] ?>" placeholder="cth. 2010" required>
+                                                                <input type="number" min="1900" max="<?= date('Y') ?>" class="form-control" id="tahun_terbit" name="tahun_terbit" value="<?= $buku['tahun_terbit'] ?>" placeholder="cth. 2010" required>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -171,7 +171,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                        <form action="db/buku/hapus_data.php" method="post">
+                                                        <form action="../../db/buku/delete.php" method="post">
                                                             <input type="hidden" name="id" value="<?= $buku['id'] ?>">
                                                             <button type="submit" class="btn btn-danger">Yes, Delete</button>
                                                         </form>
@@ -199,6 +199,6 @@
         scrollX: true
     });
     </script>
-    <script src="assets/js/main.js"></script>
+    <script src="../../assets/js/main.js"></script>
 </body>
 </html>

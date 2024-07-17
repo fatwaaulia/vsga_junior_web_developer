@@ -14,9 +14,9 @@
                             Entri Data dan Transaksi
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="data_anggota.php">Data Anggota</a></li>
-                            <li><a class="dropdown-item" href="data_buku.php">Data Buku</a></li>
-                            <li><a class="dropdown-item" href="transaksi_peminjaman.php">Transaksi Peminjaman</a></li>
+                            <li><a class="dropdown-item" href="view/anggota/data.php">Data Anggota</a></li>
+                            <li><a class="dropdown-item" href="view/buku/data.php">Data Buku</a></li>
+                            <li><a class="dropdown-item" href="view/transaksi_peminjaman/data.php">Transaksi Peminjaman</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">

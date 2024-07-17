@@ -1,5 +1,5 @@
 <?php
-require_once 'db/koneksi.php';
+require_once '../../db/koneksi.php';
 $kode = $_GET['kode'];
 $query = "SELECT * FROM buku WHERE kode = $kode";
 $detail_buku = mysqli_query($koneksi, $query);
@@ -7,7 +7,7 @@ $detail_buku = mysqli_query($koneksi, $query);
 if (mysqli_num_rows($detail_buku) > 0) {
     $buku = mysqli_fetch_array($detail_buku);
 } else {
-    header('location: data_buku.php');
+    header('location: data.php');
 }
 ?>
 
@@ -21,11 +21,11 @@ if (mysqli_num_rows($detail_buku) > 0) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
 </head>
 <body>
     <!-- navbar -->
-    <?php require_once 'navbar.php'; ?>
+    <?php require_once '../component/navbar.php'; ?>
     <!-- akhir navbar -->
 
     <!-- konten -->
@@ -56,6 +56,17 @@ if (mysqli_num_rows($detail_buku) > 0) {
                                 <td>Tahun Terbit</td>
                                 <td>: <?= $buku['tahun_terbit'] ?></td>
                             </tr>
+                            <tr>
+                                <td>Usia Buku</td>
+                                <td>:
+                                    <?php
+                                    $tahun_terbit = $buku['tahun_terbit'];
+                                    $tahun_sekarang = date('Y');
+                                    $usia_buku = $tahun_sekarang - $tahun_terbit;
+                                    echo $usia_buku . ' Tahun';
+                                    ?>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -72,6 +83,6 @@ if (mysqli_num_rows($detail_buku) > 0) {
         scrollX: true
     });
     </script>
-    <script src="assets/js/main.js"></script>
+    <script src="../../assets/js/main.js"></script>
 </body>
 </html>

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Transaksi Peminjaman</title>
+    <title>Data Anggota</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
 </head>
 <body>
     <!-- navbar -->
@@ -19,7 +19,7 @@
     <section class="container mt-4">
         <div class="row mb-2">
             <div class="col-12">
-                <h3>Data Transaksi Peminjaman</h3>
+                <h3>Data Anggota</h3>
             </div>
         </div>
         <div class="row">
@@ -41,20 +41,24 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="mb-3">
-                                                <label for="tgl_peminjaman" class="form-label">Tgl. Peminjaman</label>
-                                                <input type="date" class="form-control" id="tgl_peminjaman" name="tgl_peminjaman" placeholder="masukkan tgl peminjaman">
+                                                <label for="id_anggota" class="form-label">Id Anggota</label>
+                                                <input type="text" class="form-control" id="id_anggota" name="id_anggota" placeholder="masukkan id anggota">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="tgl_pengembalian" class="form-label">Tgl. Pengembalian</label>
-                                                <input type="date" class="form-control" id="tgl_pengembalian" name="tgl_pengembalian" placeholder="masukkan tgl pengembalian">
+                                                <label for="nama" class="form-label">Nama</label>
+                                                <input type="text" class="form-control" id="nama" name="nama" placeholder="masukkan nama">
                                             </div>
                                             <div class="mb-3">
-                                                <label for="nama_buku" class="form-label">Nama Buku</label>
-                                                <input type="text" class="form-control" id="nama_buku" name="nama_buku" placeholder="masukkan nama buku">
+                                                <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                                <select class="form-select" id="jenis_kelamin" name="jenis_kelamin">
+                                                    <option value="">Pilih</option>
+                                                    <option value="Laki-Laki">Laki-Laki</option>
+                                                    <option value="Perempuan">Perempuan</option>
+                                                </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="nama_peminjam" class="form-label">Nama Peminjam</label>
-                                                <input type="text" class="form-control" id="nama_peminjam" name="nama_peminjam" placeholder="masukkan nama peminjam">
+                                                <label for="alamat" class="form-label">Alamat</label>
+                                                <textarea class="form-control" id="alamat" name="alamat" rows="3" placeholder="masukkan alamat"></textarea>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -70,20 +74,20 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Tgl. Peminjaman</th>
-                                    <th>Tgl. Pengembalian</th>
-                                    <th>Nama Buku</th>
-                                    <th>Nama Peminjam</th>
+                                    <th>Id Anggota</th>
+                                    <th>Nama</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Alamat</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td>17 Mei 2024</td>
-                                    <td>28 Mei 2024</td>
-                                    <td>Cerita Nabi dan Rasul</td>
+                                    <td>3456</td>
                                     <td>Fatwa Aulia</td>
+                                    <td>Laki-Laki</td>
+                                    <td>Genteng</td>
                                     <td>
                                         <a href="#" class="me-2" title="edit">
                                             <i class="fa-regular fa-pen-to-square fa-lg"></i>
@@ -135,6 +139,6 @@
         scrollX: true
     });
     </script>
-    <script src="assets/js/main.js"></script>
+    <script src="../../assets/js/main.js"></script>
 </body>
 </html>

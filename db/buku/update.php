@@ -9,7 +9,7 @@ $penerbit = $_POST['penerbit'];
 $tahun_terbit = $_POST['tahun_terbit'];
 
 if (!$id OR !$kode OR !$nama_buku OR !$penerbit OR !$tahun_terbit) {
-    header('location: ../../data_buku.php');
+    header('location: ../../view/buku/data.php');
 }
 
 $query = "UPDATE buku
@@ -21,7 +21,7 @@ $query = "UPDATE buku
 $edit_data = mysqli_query($koneksi, $query);
 
 if ($edit_data) {
-    header('location: ../../data_buku.php');
+    header('location: ../../view/buku/data.php');
 }
 
 

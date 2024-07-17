@@ -10,7 +10,7 @@
 </head>
 <body>
     <!-- navbar -->
-    <?php require_once 'navbar.php'; ?>
+    <?php require_once 'view/component/navbar.php'; ?>
     <!-- akhir navbar -->
 
     <!-- konten -->
