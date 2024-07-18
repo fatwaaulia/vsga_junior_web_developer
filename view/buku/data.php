@@ -54,6 +54,10 @@
                                                         <input type="text" class="form-control" id="penerbit" name="penerbit" placeholder="masukkan penerbit" required>
                                                     </div>
                                                     <div class="mb-3">
+                                                        <label for="nama_penulis" class="form-label">Nama Penulis</label>
+                                                        <input type="text" class="form-control" id="nama_penulis" name="nama_penulis" placeholder="masukkan nama penulis" required>
+                                                    </div>
+                                                    <div class="mb-3">
                                                         <label for="tahun_terbit" class="form-label">Tahun Terbit</label>
                                                         <input type="number" min="1900" max="<?= date('Y') ?>" class="form-control" id="tahun_terbit" name="tahun_terbit" placeholder="cth. 2010" required>
                                                     </div>
@@ -75,6 +79,7 @@
                                     <th>Kode</th>
                                     <th>Nama Buku</th>
                                     <th>Penerbit</th>
+                                    <th>Nama Penulis</th>
                                     <th>Tahun Terbit</th>
                                     <th>Usia Buku</th>
                                     <th>Opsi</th>
@@ -92,6 +97,7 @@
                                     <td><?= $buku['kode'] ?></td>
                                     <td><?= $buku['nama'] ?></td>
                                     <td><?= $buku['penerbit'] ?></td>
+                                    <td><?= $buku['nama_penulis'] ?></td>
                                     <td><?= $buku['tahun_terbit'] ?></td>
                                     <td>
                                         <?php
@@ -131,6 +137,10 @@
                                                             <div class="mb-3">
                                                                 <label for="penerbit" class="form-label">Penerbit</label>
                                                                 <input type="text" class="form-control" id="penerbit" name="penerbit" value="<?= $buku['penerbit'] ?>" placeholder="masukkan penerbit" required>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="nama_penulis" class="form-label">Nama Penulis</label>
+                                                                <input type="text" class="form-control" id="nama_penulis" name="nama_penulis" value="<?= $buku['nama_penulis'] ?>" placeholder="masukkan nama penulis" required>
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="tahun_terbit" class="form-label">Tahun Terbit</label>
