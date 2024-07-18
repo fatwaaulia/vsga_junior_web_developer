@@ -28,40 +28,58 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahData">
                                     Tambah Data
                                 </button>
                                 <!-- Modal -->
-                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal fade" id="tambahData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Data Anggota</h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Data Transaksi Peminjaman</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="../../db/transaksi_peminjaman/insert.php" method="post">
+                                                <div class="modal-body">
+                                                    <div class="mb-3">
+                                                        <label for="tgl_peminjaman" class="form-label">Tgl. Peminjaman</label>
+                                                        <input type="date" class="form-control" id="tgl_peminjaman" name="tgl_peminjaman" placeholder="masukkan tgl peminjaman">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="nama_buku" class="form-label">Nama Buku</label>
+                                                        <select class="form-select" id="nama_buku" name="nama_buku">
+                                                            <option value="">Pilih</option>
+                                                            <?php
+                                                            require_once '../../db/koneksi.php';
+                                                            $query = 'SELECT * FROM buku';
+                                                            $data_buku = mysqli_query($koneksi, $query);
+                                                            foreach ($data_buku as $buku) :
+                                                            ?>
+                                                            <option value="<?= $buku['nama'] ?>"><?= $buku['nama'] ?></option>
+                                                            <?php endforeach; ?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="nama_peminjam" class="form-label">Nama Peminjaman</label>
+                                                        <select class="form-select" id="nama_peminjam" name="nama_peminjam">
+                                                            <option value="">Pilih</option>
+                                                            <?php
+                                                            require_once '../../db/koneksi.php';
+                                                            $query = 'SELECT * FROM anggota';
+                                                            $data_anggota = mysqli_query($koneksi, $query);
+                                                            foreach ($data_anggota as $anggota) :
+                                                            ?>
+                                                            <option value="<?= $anggota['nama'] ?>"><?= $anggota['nama'] ?></option>
+                                                            <?php endforeach; ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                    <button type="submit" class="btn btn-primary">Tambahkan</button>
+                                                </div>
+                                            </form>
                                         </div>
-                                        <div class="modal-body">
-                                            <div class="mb-3">
-                                                <label for="tgl_peminjaman" class="form-label">Tgl. Peminjaman</label>
-                                                <input type="date" class="form-control" id="tgl_peminjaman" name="tgl_peminjaman" placeholder="masukkan tgl peminjaman">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="tgl_pengembalian" class="form-label">Tgl. Pengembalian</label>
-                                                <input type="date" class="form-control" id="tgl_pengembalian" name="tgl_pengembalian" placeholder="masukkan tgl pengembalian">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="nama_buku" class="form-label">Nama Buku</label>
-                                                <input type="text" class="form-control" id="nama_buku" name="nama_buku" placeholder="masukkan nama buku">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="nama_peminjam" class="form-label">Nama Peminjam</label>
-                                                <input type="text" class="form-control" id="nama_peminjam" name="nama_peminjam" placeholder="masukkan nama peminjam">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                            <button type="button" class="btn btn-primary">Tambahkan</button>
-                                        </div>
-                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -78,20 +96,82 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php
+                                require_once '../../db/koneksi.php';
+                                $query = 'SELECT * FROM transaksi_peminjaman';
+                                $data_transaksi_peminjaman = mysqli_query($koneksi, $query);
+                                foreach ($data_transaksi_peminjaman as $key => $transaksi_peminjaman) :
+                                ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>17 Mei 2024</td>
-                                    <td>28 Mei 2024</td>
-                                    <td>Cerita Nabi dan Rasul</td>
-                                    <td>Fatwa Aulia</td>
+                                    <td><?= $key+1 ?></td>
+                                    <td><?= $transaksi_peminjaman['tgl_peminjaman'] ?></td>
+                                    <td><?= $transaksi_peminjaman['tgl_pengembalian'] ?></td>
+                                    <td><?= $transaksi_peminjaman['nama_buku'] ?></td>
+                                    <td><?= $transaksi_peminjaman['nama_peminjam'] ?></td>
                                     <td>
-                                        <a href="#" class="me-2" title="edit">
+                                        <!-- edit -->
+                                        <a href="#" class="me-2" title="edit" data-bs-toggle="modal" data-bs-target="#editData<?= $transaksi_peminjaman['id'] ?>">
                                             <i class="fa-regular fa-pen-to-square fa-lg"></i>
                                         </a>
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#hapus_data1" title="delete">
+                                        <div class="modal fade" id="editData<?= $transaksi_peminjaman['id'] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Data Transaksi Peminjaman</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <form action="../../db/transaksi_peminjaman/update.php" method="post">
+                                                        <input type="hidden" name="id" value="<?= $transaksi_peminjaman['id'] ?>">
+                                                        <div class="modal-body">
+                                                            <div class="mb-3">
+                                                                <label for="tgl_peminjaman" class="form-label">Tgl. Peminjaman</label>
+                                                                <input type="date" class="form-control" id="tgl_peminjaman" name="tgl_peminjaman" value="<?= $transaksi_peminjaman['tgl_peminjaman'] ?>" placeholder="masukkan tgl peminjaman">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="tgl_pengembalian" class="form-label">Tgl. Pengembalian</label>
+                                                                <input type="date" class="form-control" id="tgl_pengembalian" name="tgl_pengembalian" value="<?= $transaksi_peminjaman['tgl_pengembalian'] ?>" placeholder="masukkan tgl pengembalian">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="nama_buku" class="form-label">Nama Buku</label>
+                                                                <select class="form-select" id="nama_buku" name="nama_buku">
+                                                                    <option value="">Pilih</option>
+                                                                    <?php
+                                                                    require_once '../../db/koneksi.php';
+                                                                    $query = 'SELECT * FROM buku';
+                                                                    $data_buku = mysqli_query($koneksi, $query);
+                                                                    foreach ($data_buku as $buku) :
+                                                                    ?>
+                                                                    <option value="<?= $buku['nama'] ?>" <?= $transaksi_peminjaman['nama_buku'] == $buku['nama'] ? 'selected' : '' ?>><?= $buku['nama'] ?></option>
+                                                                    <?php endforeach; ?>
+                                                                </select>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="nama_peminjam" class="form-label">Nama Peminjaman</label>
+                                                                <select class="form-select" id="nama_peminjam" name="nama_peminjam">
+                                                                    <?php
+                                                                    require_once '../../db/koneksi.php';
+                                                                    $query = 'SELECT * FROM anggota';
+                                                                    $data_anggota = mysqli_query($koneksi, $query);
+                                                                    foreach ($data_anggota as $anggota) :
+                                                                    ?>
+                                                                    <option value="<?= $anggota['nama'] ?>" <?= $transaksi_peminjaman['nama_peminjam'] == $anggota['nama'] ? 'selected' : '' ?>><?= $anggota['nama'] ?></option>
+                                                                    <?php endforeach; ?>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- hapus -->
+                                        <a href="#" data-bs-toggle="modal" title="delete" data-bs-toggle="modal" data-bs-target="#hapusData<?= $transaksi_peminjaman['id'] ?>">
                                             <i class="fa-regular fa-trash-can fa-lg text-danger"></i>
                                         </a>
-                                        <div class="modal fade" id="hapus_data1" tabindex="-1" aria-labelledby="hapusDataLabel" aria-hidden="true">
+                                        <div class="modal fade" id="hapusData<?= $transaksi_peminjaman['id'] ?>" tabindex="-1" aria-labelledby="hapusDataLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -100,16 +180,11 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <p>Are you sure to delete this data?</p>
-                                                        <table>
-                                                            <tr>
-                                                                <td>Nama</td>
-                                                                <td>: Fatwa</td>
-                                                            </tr>
-                                                        </table>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                        <form action="#" method="post">
+                                                        <form action="../../db/transaksi_peminjaman/delete.php" method="post">
+                                                            <input type="hidden" name="id" value="<?= $transaksi_peminjaman['id'] ?>">
                                                             <button type="submit" class="btn btn-danger">Yes, Delete</button>
                                                         </form>
                                                     </div>
@@ -118,6 +193,7 @@
                                         </div>
                                     </td>
                                 </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

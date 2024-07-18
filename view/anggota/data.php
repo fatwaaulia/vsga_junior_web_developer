@@ -155,7 +155,7 @@
                                                         <p>Are you sure to delete this data?</p>
                                                         <table>
                                                             <tr>
-                                                                <td>Kode</td>
+                                                                <td>Id Anggota</td>
                                                                 <td>: <?= $anggota['id_anggota'] ?></td>
                                                             </tr>
                                                             <tr>
